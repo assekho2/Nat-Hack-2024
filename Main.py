@@ -14,7 +14,7 @@ BAUD_RATE = 9600 # its a typical rate for BiOAMP
 DURATION = 60 # time of measuirng our data
 OUTPUT_FILE = 'eeg_data.csv'
 
-def aquire_eeg_data(port, baud_rate, duration, output_file):
+def acquire_eeg_data(port, baud_rate, duration, output_file):
     try: # just getting the data from the device 
         ser = serial.Serial(port, baud_rate, timeout= 1)
         print(f"Connected to {port} at {baud_rate} baud.")
