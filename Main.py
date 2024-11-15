@@ -8,6 +8,9 @@ Khushdeep Brar
 import serial 
 import time
 import csv 
+import numpy as np
+from scipy.signal import butter, sosfilt
+import matplotlib.pyplot as plt 
 
 PORT = 'COM3' # our device COM number replace 
 BAUD_RATE = 9600 # its a typical rate for BiOAMP
