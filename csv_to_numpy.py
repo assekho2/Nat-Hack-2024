@@ -5,9 +5,16 @@ import numpy as np
 import csv
 
 def csv_to_arr(csv_filename):
+    data = []
+
     with open(csv_filename, 'r') as f:
         reader = csv.reader(f)
-        data = list(reader)
-    data_arr = np.array(data, dtype=float)
+        
+        for row in reader:
+            if len(row) >= 3:
+                try:
+                    data.append(float(row[2]))
+                except:
+                    pass
     
-    mask = 
+    return np.array(data)
