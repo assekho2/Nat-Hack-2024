@@ -8,6 +8,9 @@ Khushdeep Brar
 import serial 
 import time
 import csv 
+import numpy as np
+from scipy.signal import butter, sosfilt
+import matplotlib.pyplot as plt 
 
 PORT = 'COM3' # our device COM number replace 
 BAUD_RATE = 9600 # its a typical rate for BiOAMP
@@ -38,6 +41,15 @@ def acquire_eeg_data(port, baud_rate, duration, output_file):
         print(f"Error: {e}")
 
 acquire_eeg_data(PORT, BAUD_RATE, DURATION, OUTPUT_FILE)
+
+def bandpass_filter(data, lowcut= 8, highcut= 12, fs = 256, order= 4): # lowcut and highcut are the frequencies ranges and fs is our sampoliing frequncy being 256hz, order gives the steepness
+    sos = butter(order, [low,high], btype="band", output='sos') # butterworht filter using scipy and second order secitons 
+    return sosfilt(sos,data)
+
+def process_csv(input_file, output_file, fs=256):
+    data = pd.read_csv(input_file)
+    if "EEG Signal" not in data_columns:
+        
 
 
 
